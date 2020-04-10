@@ -25,15 +25,18 @@ pipeline{
                 always {
                     echo 'Saving reports...'
                     archiveArtifacts artifacts: 'reports/**/*.*,allure-results/**/*.*', fingerprint: true
-                    echo 'archiveArtifacts passed'
                     junit testResults: 'reports/junit.xml', allowEmptyResults: true
                     echo 'junit passed'
                     allure results: [[path: 'allure_results']]
                     script {
-                        def REPORT_HTML = readfile('reports/extra.html').trim()
-                        emailext([body: REPORT_HTML, mimeType: 'text/html', attachmentsPattern: 'reports/extra.html', recipientProviders: [[$class: 'RequesterRecipientProvider']], subject: 'WhitneyVectorRules Smoke Test Report'])
+                        try {
+                            //sh 'echo REPORT_HTML=$(cat reports/extra.html)'
+                            def REPORT_HTML = readFile('reports/extra.html').trim()
+                            emailext([body: REPORT_HTML, mimeType: 'text/html', attachmentsPattern: 'reports/extra.html', recipientProviders: [[$class: 'RequesterRecipientProvider']], subject: 'WhitneyVectorRules Smoke Test Report'])
+                        } catch (ex) {
+                            echo ex.toString()
+                        }
                     }
-                    //sh 'echo REPORT_HTML=$(cat reports/extra.html)'
                 }
             }
         }
