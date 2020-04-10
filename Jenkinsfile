@@ -26,18 +26,13 @@ pipeline{
                     echo 'Saving reports...'
                     archiveArtifacts artifacts: 'reports/**/*.*,allure-results/**/*.*', fingerprint: true
                     echo 'archiveArtifacts passed'
-                    sh 'echo REPORT_HTML=$(cat reports/extra.html)'
+                    emailext([body: "Hi", mimeType: 'text/html', attachmentsPattern: 'reports/extra.html', recipientProviders: [[$class: 'RequesterRecipientProvider']], subject: 'WhitneyVectorRules Smoke Test Report'])
+                    sh 'REPORT_HTML=$(cat reports/extra.html)'
+                    allure results: [[path: 'allure_results']]
                     junit testResults: 'reports/ST/PropertyImage.xml', allowEmptyResults: true
                     echo 'junit passed'
                 }
             }
-        }
-    }
-    post {
-        always {
-            allure results: [[path: 'allure_results']]
-            emailext([body: $REPORT_HTML, mimeType: 'text/html', recipientProviders: [[$class: 'RequesterRecipientProvider']], subject: 'WhitneyVectorRules Smoke Test Report', to: 'mhariachyi@corelogic.com'])
-            publishHTML([reportDir: 'reports', reportFiles: 'extra.html', reportName: 'HTML Report', allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true])
         }
     }
 }
