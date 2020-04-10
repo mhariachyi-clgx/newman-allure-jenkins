@@ -1,16 +1,16 @@
 {
 	"info": {
-		"_postman_id": "063c5adb-d985-4a0f-9320-14d3e100c197",
+		"_postman_id": "0e6f7b50-1b56-4dec-a1bc-5fe6c7f656fc",
 		"name": "AA_TEST",
 		"description": "another collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "service",
+			"name": "dummy_rest_api",
 			"item": [
 				{
-					"name": "Json schema validator",
+					"name": "dummy rest api example",
 					"event": [
 						{
 							"listen": "test",
