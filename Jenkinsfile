@@ -4,7 +4,7 @@ pipeline{
     }
     environment {
             REPORT_FOLDER = "reports"
-            COLLECTION_PATH = "./AA_TEST.postman_collection.json"
+            COLLECTION_PATH = "./DemoSuite.postman_collection.json"
             ENVIRONMENT_PATH = "./search.postman_environment.json"
     }
     options {
