@@ -22,6 +22,7 @@ pipeline{
                     currentBuild.description = "${env.COLLECTION_NAME} tests on ${env.ENVIRONMENT_NAME}"
                     sh "npm install newman"
                     sh "npm install newman-reporter-allure"
+                    sh "npm install newman-reporter-html"
                     sh "npm install newman-reporter-htmlextra"
                     sh "node_modules/newman/bin/newman.js run ${COLLECTION_PATH} \
                     -e ${ENVIRONMENT_PATH} \
