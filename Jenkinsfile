@@ -5,7 +5,7 @@ pipeline{
     environment {
             REPORT_FOLDER = "reports"
             COLLECTION_PATH = "./DemoSuite.postman_collection.json"
-            ENVIRONMENT_PATH = "./dev.postman_environment.json"
+            ENVIRONMENT_PATH = "./demo_env.postman_environment.json"
     }
     options {
         ansiColor("xterm")

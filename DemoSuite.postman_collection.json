@@ -35,12 +35,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://dummy.restapiexample.com/api/v1/employees",
-							"protocol": "http",
+							"raw": "{{dummy_base_url}}/api/v1/employees",
 							"host": [
-								"dummy",
-								"restapiexample",
-								"com"
+								"{{dummy_base_url}}"
 							],
 							"path": [
 								"api",
@@ -77,12 +74,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://dummy.restapiexample.com/api/v1/employee/:id",
-							"protocol": "http",
+							"raw": "{{dummy_base_url}}/api/v1/employee/:id",
 							"host": [
-								"dummy",
-								"restapiexample",
-								"com"
+								"{{dummy_base_url}}"
 							],
 							"path": [
 								"api",
