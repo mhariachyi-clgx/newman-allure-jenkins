@@ -10,15 +10,21 @@
 			"name": "dummy_rest_api",
 			"item": [
 				{
-					"name": "dummy rest api example",
+					"name": "employees",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "6d67d8af-8cf9-4c6e-b360-f29b9af28dfc",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
+									"pm.test(\"Employees request is successful\", function () {",
 									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"success\");",
+									"});",
+									"pm.test(\"The response data list contains 24 records\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.have.lengthOf(24);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -40,6 +46,52 @@
 								"api",
 								"v1",
 								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "employe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8038435b-b4cd-4d66-b33d-e3abbb7b890e",
+								"exec": [
+									"pm.test(\"employee id matches\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"success\");",
+									"    pm.expect(jsonData.data.id).to.eql(\"1\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://dummy.restapiexample.com/api/v1/employee/:id",
+							"protocol": "http",
+							"host": [
+								"dummy",
+								"restapiexample",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"employee",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
 							]
 						}
 					},
