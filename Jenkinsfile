@@ -5,7 +5,7 @@ pipeline{
     environment {
             REPORT_FOLDER = "reports"
             COLLECTION_PATH = "./DemoSuite.postman_collection.json"
-            ENVIRONMENT_PATH = "./search.postman_environment.json"
+            ENVIRONMENT_PATH = "./dev.postman_environment.json"
     }
     options {
         ansiColor("xterm")
@@ -22,8 +22,9 @@ pipeline{
                     sh "npm install newman-reporter-htmlextra"
                     sh "node_modules/newman/bin/newman.js run ${COLLECTION_PATH} \
                     -e ${ENVIRONMENT_PATH} \
-                    -r cli,junit,allure,htmlextra \
+                    -r cli,junit,allure,html,htmlextra \
                     --reporter-htmlextra-export ${REPORT_FOLDER}/extra.html \
+                    --reporter-html-export ${REPORT_FOLDER}/simple.html \
                     --reporter-junit-export ${REPORT_FOLDER}/junit.xml \
                     -x"
                 }
@@ -45,7 +46,7 @@ pipeline{
                 try {
                     //sh "echo REPORT_HTML=$(cat reports/extra.html)"
                     sh "ls -LR reports"
-                    def REPORT_HTML = readFile("${REPORT_FOLDER}/extra.html").trim()
+                    def REPORT_HTML = readFile("${REPORT_FOLDER}/simple.html").trim()
                     emailext([body: REPORT_HTML, mimeType: "text/html", attachmentsPattern: "${REPORT_FOLDER}/extra.html", recipientProviders: [[$class: "RequesterRecipientProvider"]], subject: "WhitneyVectorRules Smoke Test Report"])
                 } catch (ex) {
                     echo ex.toString()
