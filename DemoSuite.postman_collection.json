@@ -63,7 +63,7 @@
 									"});",
 									"pm.test(\"[TC-002] Employee id matches\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data.id).to.eql(\"1\");",
+									"    pm.expect(jsonData.data.id).to.eql(\"01\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -118,46 +118,6 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "google",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "cf38a4b3-aad2-40fe-b6b4-fca8ffc65a72",
-						"exec": [
-							"pm.test(\"[TC-010] The search is successful\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://www.google.com/search?q=asd",
-					"protocol": "https",
-					"host": [
-						"www",
-						"google",
-						"com"
-					],
-					"path": [
-						"search"
-					],
-					"query": [
-						{
-							"key": "q",
-							"value": "asd"
-						}
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [
