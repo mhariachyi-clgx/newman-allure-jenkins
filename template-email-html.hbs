@@ -178,6 +178,18 @@
             padding-right: 20px
         }
 
+        td.fit,
+        th.fit{
+            padding: 0px !important;
+        }
+
+        table.grid,
+        table.grid td,
+        table.grid th {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
         .empty_row {
             height: 16px !important;
         }
@@ -194,11 +206,11 @@
             width: 33.33333333%;
         }
         
-        table.a {
+        table.auto {
             table-layout: auto;
         }
         
-        table.f {
+        table.fixed {
             table-layout: fixed;
         }
 
@@ -5120,10 +5132,10 @@
 <body>
     <div class="container">
         <h3>Newman Report</h3>
-        <div class="row">
+        <div>
             {{!-- Meta info --}}
             {{#with summary}}
-            <table class="a">
+            <table class="auto w_100 grid">
                 <tr>
                     <td>Collection</td>
                     <td>{{collection.name}}</td>
@@ -5145,11 +5157,11 @@
                 </tr>
             </table>
 
+            <div class="col-md-12">&nbsp;</div>
             {{!-- Statistics --}}
-            <table class="a">
-                <div class="col-md-12">&nbsp;</div>
+            <table class="auto grid">
                 <tr>
-                    <th></th>
+                    <th class="w_066">Summary Item</th>
                     <th>Total</th>
                     <th>Failed</th>
                 </tr>
@@ -5184,9 +5196,9 @@
             {{/with}}
 
             <div class="col-md-12">&nbsp;</div>
-            <table class="a">
+            <table class="auto grid">
                 <tr>
-                    <td>Total run duration</td>
+                    <td class="w_066">Total run duration</td>
                     <td>{{duration}}</td>
                 </tr>
                 <tr>
@@ -5251,7 +5263,7 @@
                     aria-labelledby="failureHead-{{@index}}">
                     <div class="panel-body">
                         <div class="col-md-12">&nbsp;</div>
-                        <table>
+                        <table class="grid">
                             {{#if error.test}}
                             <tr>
                                 <td>Description</td>
@@ -5299,7 +5311,7 @@
         <div id="requestData-{{item.id}}" class="panel-collapse collapse in" role="tabpanel"
             aria-labelledby="requestHead-{{item.id}}">
             <div class="panel-body">
-                <table>
+                <table class="grid">
                     {{#with request}}
                     {{#if description.content}}
                     <tr>
@@ -5389,8 +5401,8 @@
                     </tr>
                     <tr>
                         <td>Tests</td>
-                        <td>
-                            <table class="table table-responsive table-condensed">
+                        <td class="fit">
+                            <table class="table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
