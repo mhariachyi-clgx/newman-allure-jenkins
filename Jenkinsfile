@@ -29,6 +29,7 @@ pipeline{
                     -r cli,junit,allure,html,htmlextra \
                     --reporter-htmlextra-export ${REPORT_FOLDER}/${REPORT_FILE_NAME} \
                     --reporter-html-export ${REPORT_FOLDER}/simple.html \
+                    --reporter-html-template template-simple.hbs \
                     --reporter-junit-export ${REPORT_FOLDER}/junit.xml \
                     -x"
                 }
