@@ -42,25 +42,21 @@ pipeline{
                     junit testResults: "${REPORT_FOLDER}/junit.xml", allowEmptyResults: true
                     echo "junit passed"
                     allure results: [[path: "allure_results"]]
-                }
-            }
-        }
-    }
-    post {
-        always {
-             script {
-                try {
-                    sh "ls -LR reports"
-                    def REPORT_HTML = readFile("${REPORT_FOLDER}/simple.html").trim()
-                    emailext([
-                        recipientProviders: [[$class: "RequesterRecipientProvider"]],
-                        subject: "Test Report ${COLLECTION_NAME} on ${ENVIRONMENT_NAME}",
-                        body: REPORT_HTML,
-                        mimeType: "text/html",
-                        attachmentsPattern: "${REPORT_FOLDER}/${REPORT_FILE_NAME}"
-                    ])
-                } catch (ex) {
-                    echo ex.toString()
+                    script {
+                        try {
+                            sh "ls -LR reports"
+                            def REPORT_HTML = readFile("${REPORT_FOLDER}/simple.html").trim()
+                            emailext([
+                                recipientProviders: [[$class: "RequesterRecipientProvider"]],
+                                subject: "Test Report ${COLLECTION_NAME} on ${ENVIRONMENT_NAME}",
+                                body: REPORT_HTML,
+                                mimeType: "text/html",
+                                attachmentsPattern: "${REPORT_FOLDER}/${REPORT_FILE_NAME}"
+                            ])
+                        } catch (ex) {
+                            echo ex.toString()
+                        }
+                    }
                 }
             }
         }
