@@ -3,11 +3,14 @@ pipeline{
         label "corelogicpostman"
     }
     environment {
-            REPORT_FOLDER = "reports"
-            COLLECTION_NAME = "DemoSuite"
-            ENVIRONMENT_NAME = "demo_env"
-            COLLECTION_PATH = "./${COLLECTION_NAME}.postman_collection.json"
-            ENVIRONMENT_PATH = "./${ENVIRONMENT_NAME}.postman_environment.json"
+    		Application = "DemoSuite"
+            Environment = "demo_env"
+            COLLECTION_NAME = getFileName(Application)
+            APP_FOLDER = getFoldersPath(Application)
+            ENVIRONMENT_NAME = Environment
+            COLLECTION_PATH = "./${APP_FOLDER}${COLLECTION_NAME}.postman_collection.json"
+            ENVIRONMENT_PATH = "./${APP_FOLDER}${ENVIRONMENT_NAME}.postman_environment.json"
+            REPORT_FOLDER = "${APP_FOLDER}reports/"
             REPORT_RICH_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report_extra.html"
             REPORT_COMPATIBLE_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report.html"
             REPORT_JUNIT_NAME = "junit.xml"
@@ -22,19 +25,20 @@ pipeline{
     stages {
         stage("Testing"){
             steps{
-                script{
+                script {
                     currentBuild.description = "${env.COLLECTION_NAME} tests on ${env.ENVIRONMENT_NAME}"
                     sh "npm install newman"
                     sh "npm install newman-reporter-allure"
                     sh "npm install newman-reporter-html"
                     sh "npm install newman-reporter-htmlextra"
+                    //TODO: change 'node_modules/newman/bin/newman.js' to 'newman' when newman-reporter-allure installed globally
                     sh "node_modules/newman/bin/newman.js run ${COLLECTION_PATH} \
                     -e ${ENVIRONMENT_PATH} \
                     -r cli,junit,allure,html,htmlextra \
-                    --reporter-htmlextra-export ${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME} \
+                    --reporter-junit-export ${REPORT_FOLDER}/${REPORT_JUNIT_NAME} \
                     --reporter-html-export ${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME} \
                     --reporter-html-template ${HTML_REPORT_TEMPLATE_PATH} \
-                    --reporter-junit-export ${REPORT_FOLDER}/${REPORT_JUNIT_NAME} \
+                    --reporter-htmlextra-export ${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME} \
                     -x"
                 }
             }
@@ -77,4 +81,13 @@ pipeline{
             }
         }
     }
+}
+
+def getFileName(String path) {
+	return path.substring(path.lastIndexOf('/') + 1)
+}
+
+def getFoldersPath(String path) {
+	def lastIndex = path.lastIndexOf('/')
+	return path.substring(0, lastIndex < 0 ? lastIndex + 1 : lastIndex)
 }
