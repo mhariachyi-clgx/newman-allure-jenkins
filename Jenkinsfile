@@ -8,7 +8,8 @@ pipeline{
             ENVIRONMENT_NAME = "demo_env"
             COLLECTION_PATH = "./${COLLECTION_NAME}.postman_collection.json"
             ENVIRONMENT_PATH = "./${ENVIRONMENT_NAME}.postman_environment.json"
-            REPORT_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report.html"
+            REPORT_RICH_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report.html"
+            REPORT_COMPATIBLE_FILE_NAME = "simple.html"
     }
     options {
         ansiColor("xterm")
@@ -28,8 +29,8 @@ pipeline{
                     sh "node_modules/newman/bin/newman.js run ${COLLECTION_PATH} \
                     -e ${ENVIRONMENT_PATH} \
                     -r cli,junit,allure,html,htmlextra \
-                    --reporter-htmlextra-export ${REPORT_FOLDER}/${REPORT_FILE_NAME} \
-                    --reporter-html-export ${REPORT_FOLDER}/simple.html \
+                    --reporter-htmlextra-export ${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME} \
+                    --reporter-html-export ${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME} \
                     --reporter-html-template template-email-html.hbs \
                     --reporter-junit-export ${REPORT_FOLDER}/junit.xml \
                     -x"
@@ -42,16 +43,24 @@ pipeline{
                     junit testResults: "${REPORT_FOLDER}/junit.xml", allowEmptyResults: true
                     echo "junit passed"
                     allure results: [[path: "allure_results"]]
+                    publishHTML([
+                        allowMissing: true, 
+                        alwaysLinkToLastBuild: false, 
+                        keepAll: true, 
+                        reportDir: "${REPORT_FOLDER}", 
+                        reportFiles: "${REPORT_COMPATIBLE_FILE_NAME}", 
+                        reportName: "Postman Report"
+                    ])
                     script {
                         try {
                             sh "ls -LR reports"
-                            def REPORT_HTML = readFile("${REPORT_FOLDER}/simple.html").trim()
+                            def REPORT_HTML = readFile("${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME}").trim()
                             emailext([
                                 recipientProviders: [[$class: "RequesterRecipientProvider"]],
                                 subject: "Test Report ${COLLECTION_NAME} on ${ENVIRONMENT_NAME}",
                                 body: REPORT_HTML,
                                 mimeType: "text/html",
-                                attachmentsPattern: "${REPORT_FOLDER}/${REPORT_FILE_NAME}"
+                                attachmentsPattern: "${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME}"
                             ])
                         } catch (ex) {
                             echo ex.toString()
