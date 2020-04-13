@@ -4,10 +4,9 @@ pipeline{
     }
     environment {
     		PARAMS_Application = "DemoApp/DemoSuite"
-            PARAMS_Environment = "demo_env"
+            ENVIRONMENT_NAME = "demo_env"
             COLLECTION_NAME = getFileName(PARAMS_Application)
             APP_FOLDER = getFoldersPath(PARAMS_Application)
-            ENVIRONMENT_NAME = PARAMS_Environment
             COLLECTION_PATH = "./${APP_FOLDER}${COLLECTION_NAME}.postman_collection.json"
             ENVIRONMENT_PATH = "./${APP_FOLDER}${ENVIRONMENT_NAME}.postman_environment.json"
             REPORT_FOLDER = "${APP_FOLDER}reports/"
