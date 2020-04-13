@@ -42,9 +42,11 @@ pipeline{
                 always {
                     echo "Saving reports..."
                     archiveArtifacts artifacts: "${REPORT_FOLDER}/**/*.*,allure-results/**/*.*", fingerprint: true
+                    echo "archiveArtifacts finished"
                     junit testResults: "${REPORT_FOLDER}/${REPORT_JUNIT_NAME}", allowEmptyResults: true
-                    echo "junit passed"
+                    echo "junit finished"
                     allure results: [[path: "allure_results"]]
+                    echo "allure finished"
                     publishHTML([
                         allowMissing: true, 
                         alwaysLinkToLastBuild: false, 
@@ -53,6 +55,7 @@ pipeline{
                         reportFiles: "${REPORT_COMPATIBLE_FILE_NAME}", 
                         reportName: "Postman Report"
                     ])
+                    echo "publishHTML finished"
                     script {
                         try {
                             sh "ls -LR reports"
@@ -64,10 +67,12 @@ pipeline{
                                 mimeType: "text/html",
                                 attachmentsPattern: "${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME}"
                             ])
+                            echo "emailext finished"
                         } catch (ex) {
                             echo ex.toString()
                         }
                     }
+                    echo "All the reports finished"
                 }
             }
         }
