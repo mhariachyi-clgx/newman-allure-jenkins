@@ -10,6 +10,8 @@ pipeline{
             ENVIRONMENT_PATH = "./${ENVIRONMENT_NAME}.postman_environment.json"
             REPORT_RICH_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report.html"
             REPORT_COMPATIBLE_FILE_NAME = "simple.html"
+            REPORT_JUNIT_NAME = "junit.xml"
+            HTML_REPORT_TEMPLATE_PATH = "template-email-html.hbs"
     }
     options {
         ansiColor("xterm")
@@ -31,8 +33,8 @@ pipeline{
                     -r cli,junit,allure,html,htmlextra \
                     --reporter-htmlextra-export ${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME} \
                     --reporter-html-export ${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME} \
-                    --reporter-html-template template-email-html.hbs \
-                    --reporter-junit-export ${REPORT_FOLDER}/junit.xml \
+                    --reporter-html-template ${HTML_REPORT_TEMPLATE_PATH} \
+                    --reporter-junit-export ${REPORT_FOLDER}/${REPORT_JUNIT_NAME} \
                     -x"
                 }
             }
@@ -40,7 +42,7 @@ pipeline{
                 always {
                     echo "Saving reports..."
                     archiveArtifacts artifacts: "${REPORT_FOLDER}/**/*.*,allure-results/**/*.*", fingerprint: true
-                    junit testResults: "${REPORT_FOLDER}/junit.xml", allowEmptyResults: true
+                    junit testResults: "${REPORT_FOLDER}/${REPORT_JUNIT_NAME}", allowEmptyResults: true
                     echo "junit passed"
                     allure results: [[path: "allure_results"]]
                     publishHTML([
