@@ -3,7 +3,7 @@ pipeline{
         label "corelogicpostman"
     }
     environment {
-    		Application = "DemoSuite"
+    		Application = "DemoApp/DemoSuite"
             Environment = "demo_env"
             COLLECTION_NAME = getFileName(Application)
             APP_FOLDER = getFoldersPath(Application)
