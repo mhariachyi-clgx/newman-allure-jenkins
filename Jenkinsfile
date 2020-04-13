@@ -8,8 +8,8 @@ pipeline{
             ENVIRONMENT_NAME = "demo_env"
             COLLECTION_PATH = "./${COLLECTION_NAME}.postman_collection.json"
             ENVIRONMENT_PATH = "./${ENVIRONMENT_NAME}.postman_environment.json"
-            REPORT_RICH_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report.html"
-            REPORT_COMPATIBLE_FILE_NAME = "simple.html"
+            REPORT_RICH_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report_extra.html"
+            REPORT_COMPATIBLE_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report.html"
             REPORT_JUNIT_NAME = "junit.xml"
             HTML_REPORT_TEMPLATE_PATH = "template-email-html.hbs"
     }
