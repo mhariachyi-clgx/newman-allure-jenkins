@@ -33,6 +33,7 @@ pipeline{
                     //TODO: change 'node_modules/newman/bin/newman.js' to 'newman' when newman-reporter-allure installed globally
                     sh "node_modules/newman/bin/newman.js run ${COLLECTION_PATH} \
                     -e ${ENVIRONMENT_PATH} \
+                    -d ${APP_FOLDER}/test_data.csv \
                     -r cli,junit,allure,html,htmlextra \
                     --reporter-junit-export ${REPORT_FOLDER}/${REPORT_JUNIT_NAME} \
                     --reporter-html-export ${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME} \
@@ -44,6 +45,7 @@ pipeline{
             post {
                 always {
                     echo "Saving reports..."
+                    sh "ls -LR ${REPORT_FOLDER}"
                     archiveArtifacts artifacts: "${REPORT_FOLDER}/**/*.*,allure-results/**/*.*", fingerprint: true
                     echo "archiveArtifacts finished"
                     junit testResults: "${REPORT_FOLDER}/${REPORT_JUNIT_NAME}", allowEmptyResults: true
@@ -61,7 +63,6 @@ pipeline{
                     echo "publishHTML finished"
                     script {
                         try {
-                            sh "ls -LR reports"
                             def REPORT_HTML = readFile("${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME}").trim()
                             emailext([
                                 recipientProviders: [[$class: "RequesterRecipientProvider"]],
@@ -87,6 +88,5 @@ def getFileName(String path) {
 }
 
 def getFoldersPath(String path) {
-	def lastIndex = path.lastIndexOf('/')
-	return path.substring(0, lastIndex < 0 ? lastIndex + 1 : lastIndex)
+	return path.substring(0, path.lastIndexOf('/') + 1)
 }

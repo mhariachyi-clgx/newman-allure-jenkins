@@ -87,7 +87,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "{{empId}}"
 								}
 							]
 						}
@@ -118,6 +118,57 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "create_employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd5824aa-4494-4fc1-8be5-323fc249a401",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"success\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": {{age}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/create",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"create"
+					]
+				},
+				"description": "Create a new employee record with parameters"
+			},
+			"response": []
 		}
 	],
 	"event": [
