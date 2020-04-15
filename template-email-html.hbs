@@ -215,82 +215,6 @@
             table-layout: fixed;
         }
 
-        /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
-        @media print {
-
-            div,
-            :before,
-            :after {
-                color: #000 !important;
-                text-shadow: none !important;
-                background: transparent !important;
-                -webkit-box-shadow: none !important;
-                box-shadow: none !important
-            }
-
-            a,
-            a:visited {
-                text-decoration: underline
-            }
-
-            pre,
-            blockquote {
-                border: 1px solid #999;
-                page-break-inside: avoid
-            }
-
-            thead {
-                display: table-header-group
-            }
-
-            tr,
-            img {
-                page-break-inside: avoid
-            }
-
-            img {
-                max-width: 100% !important
-            }
-
-            p,
-            h2,
-            h3 {
-                orphans: 3;
-                widows: 3
-            }
-
-            h2,
-            h3 {
-                page-break-after: avoid
-            }
-
-            select {
-                background: #fff !important
-            }
-
-            .navbar {
-                display: none
-            }
-
-            .label {
-                border: 1px solid #000
-            }
-
-            .table {
-                border-collapse: collapse !important
-            }
-
-            .table td,
-            .table th {
-                background-color: #fff !important
-            }
-
-            .table-bordered th,
-            .table-bordered td {
-                border: 1px solid #ddd !important
-            }
-        }
-
         @font-face {
             font-family: 'Glyphicons Halflings';
             src: url(../fonts/glyphicons-halflings-regular.eot);
@@ -865,9 +789,6 @@
             min-height: 1px;
             padding-right: 15px;
             padding-left: 15px;
-            {{!-- display: inline-block;
-            vertical-align: top;
-            margin-right: -4px; --}}
         }
 
         .col-md-12 {
@@ -918,162 +839,6 @@
             width: 8.33333333%
         }
 
-        .col-md-pull-12 {
-            right: 100%
-        }
-
-        .col-md-pull-11 {
-            right: 91.66666667%
-        }
-
-        .col-md-pull-10 {
-            right: 83.33333333%
-        }
-
-        .col-md-pull-9 {
-            right: 75%
-        }
-
-        .col-md-pull-8 {
-            right: 66.66666667%
-        }
-
-        .col-md-pull-7 {
-            right: 58.33333333%
-        }
-
-        .col-md-pull-6 {
-            right: 50%
-        }
-
-        .col-md-pull-5 {
-            right: 41.66666667%
-        }
-
-        .col-md-pull-4 {
-            right: 33.33333333%
-        }
-
-        .col-md-pull-3 {
-            right: 25%
-        }
-
-        .col-md-pull-2 {
-            right: 16.66666667%
-        }
-
-        .col-md-pull-1 {
-            right: 8.33333333%
-        }
-
-        .col-md-pull-0 {
-            right: auto
-        }
-
-        .col-md-push-12 {
-            left: 100%
-        }
-
-        .col-md-push-11 {
-            left: 91.66666667%
-        }
-
-        .col-md-push-10 {
-            left: 83.33333333%
-        }
-
-        .col-md-push-9 {
-            left: 75%
-        }
-
-        .col-md-push-8 {
-            left: 66.66666667%
-        }
-
-        .col-md-push-7 {
-            left: 58.33333333%
-        }
-
-        .col-md-push-6 {
-            left: 50%
-        }
-
-        .col-md-push-5 {
-            left: 41.66666667%
-        }
-
-        .col-md-push-4 {
-            left: 33.33333333%
-        }
-
-        .col-md-push-3 {
-            left: 25%
-        }
-
-        .col-md-push-2 {
-            left: 16.66666667%
-        }
-
-        .col-md-push-1 {
-            left: 8.33333333%
-        }
-
-        .col-md-push-0 {
-            left: auto
-        }
-
-        .col-md-offset-12 {
-            margin-left: 100%
-        }
-
-        .col-md-offset-11 {
-            margin-left: 91.66666667%
-        }
-
-        .col-md-offset-10 {
-            margin-left: 83.33333333%
-        }
-
-        .col-md-offset-9 {
-            margin-left: 75%
-        }
-
-        .col-md-offset-8 {
-            margin-left: 66.66666667%
-        }
-
-        .col-md-offset-7 {
-            margin-left: 58.33333333%
-        }
-
-        .col-md-offset-6 {
-            margin-left: 50%
-        }
-
-        .col-md-offset-5 {
-            margin-left: 41.66666667%
-        }
-
-        .col-md-offset-4 {
-            margin-left: 33.33333333%
-        }
-
-        .col-md-offset-3 {
-            margin-left: 25%
-        }
-
-        .col-md-offset-2 {
-            margin-left: 16.66666667%
-        }
-
-        .col-md-offset-1 {
-            margin-left: 8.33333333%
-        }
-
-        .col-md-offset-0 {
-            margin-left: 0
-        }
-
         table {
             background-color: transparent
         }
@@ -1087,35 +852,6 @@
 
         th {
             text-align: left
-        }
-
-        .table {
-            width: 100%;
-            max-width: 100%;
-            margin-bottom: 20px
-        }
-
-        .table .table {
-            background-color: #fff
-        }
-
-        .table-bordered {
-            border: 1px solid #ddd
-        }
-
-        .table-responsive {
-            min-height: .01%;
-            overflow-x: auto
-        }
-
-        @media screen and (max-width:767px) {
-            .table-responsive {
-                width: 100%;
-                margin-bottom: 15px;
-                overflow-y: hidden;
-                -ms-overflow-style: -ms-autohiding-scrollbar;
-                border: 1px solid #ddd
-            }
         }
 
         fieldset {
@@ -4262,10 +3998,10 @@
 <body>
     <div class="container">
         <h3>Newman Report</h3>
-        <div>
+        <div class="panel-group">
             {{!-- Meta info --}}
             {{#with summary}}
-            <table class="fixed grid">
+            <table class="panel panel-default fixed grid">
                 <tr>
                     <td>Collection</td>
                     <td>{{collection.name}}</td>

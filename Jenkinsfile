@@ -6,10 +6,10 @@ pipeline{
     		PARAMS_Application = "DemoApp/DemoSuite"
             ENVIRONMENT_NAME = "demo_env"
             COLLECTION_NAME = getFileName(PARAMS_Application)
-            APP_FOLDER = getFoldersPath(PARAMS_Application)
-            COLLECTION_PATH = "./${APP_FOLDER}${COLLECTION_NAME}.postman_collection.json"
-            ENVIRONMENT_PATH = "./${APP_FOLDER}${ENVIRONMENT_NAME}.postman_environment.json"
-            REPORT_FOLDER = "${APP_FOLDER}reports/"
+            BASE_DIR = getFoldersPath(PARAMS_Application) //should end with '/' if present
+            COLLECTION_PATH = "./${BASE_DIR}${COLLECTION_NAME}.postman_collection.json"
+            ENVIRONMENT_PATH = "./${BASE_DIR}${ENVIRONMENT_NAME}.postman_environment.json"
+            REPORT_FOLDER = "${BASE_DIR}reports/"
             REPORT_RICH_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report_extra.html"
             REPORT_COMPATIBLE_FILE_NAME = "${COLLECTION_NAME}_${ENVIRONMENT_NAME}_test_report.html"
             REPORT_JUNIT_NAME = "junit.xml"
@@ -33,7 +33,7 @@ pipeline{
                     //TODO: change 'node_modules/newman/bin/newman.js' to 'newman' when newman-reporter-allure installed globally
                     sh "node_modules/newman/bin/newman.js run ${COLLECTION_PATH} \
                     -e ${ENVIRONMENT_PATH} \
-                    -d ${APP_FOLDER}/test_data.csv \
+                    -d ${BASE_DIR}/test_data.csv \
                     -r cli,junit,allure,html,htmlextra \
                     --reporter-junit-export ${REPORT_FOLDER}/${REPORT_JUNIT_NAME} \
                     --reporter-html-export ${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME} \
@@ -62,20 +62,16 @@ pipeline{
                     ])
                     echo "publishHTML finished"
                     script {
-                        try {
-                            def REPORT_HTML = readFile("${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME}").trim()
-                            emailext([
-                                recipientProviders: [[$class: "RequesterRecipientProvider"]],
-                                subject: "Test Report ${COLLECTION_NAME} on ${ENVIRONMENT_NAME}",
-                                body: REPORT_HTML,
-                                mimeType: "text/html",
-                                attachmentsPattern: "${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME}"
-                            ])
-                            echo "emailext finished"
-                        } catch (ex) {
-                            echo ex.toString()
-                        }
+                        def REPORT_HTML = readFile("${REPORT_FOLDER}/${REPORT_COMPATIBLE_FILE_NAME}").trim()
+                        emailext([
+                            recipientProviders: [[$class: "RequesterRecipientProvider"]],
+                            subject: "Test Report ${COLLECTION_NAME} on ${ENVIRONMENT_NAME}",
+                            body: REPORT_HTML,
+                            mimeType: "text/html",
+                            attachmentsPattern: "${REPORT_FOLDER}/${REPORT_RICH_FILE_NAME}"
+                        ])
                     }
+                    echo "emailext finished"
                     echo "All the reports finished"
                 }
             }
