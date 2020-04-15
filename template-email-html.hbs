@@ -982,91 +982,93 @@
         <div class="panel-group">
             <div class="panel-primary">
                 <div class="panel panel-default">
-                    {{!-- Meta info --}}
-                    {{#with summary}}
-                    <table class="fixed grid">
-                        <tr>
-                            <td>Collection</td>
-                            <td>{{collection.name}}</td>
-                        </tr>
-                        {{#if collection.description}}
-                        <tr>
-                            <td>Description</td>
-                            <td>{{collection.description}}</td>
-                        </tr>
-                        {{/if}}
-                        {{/with}}
-                        <tr>
-                            <td>Time</td>
-                            <td>{{timestamp}}</td>
-                        </tr>
-                        <tr>
-                            <td>Exported with</td>
-                            <td>Newman v{{version}}</td>
-                        </tr>
-                    </table>
-
-                    <div class="col-md-12">&nbsp;</div>
-                    {{!-- Statistics --}}
-                    <table class="panel fixed grid">
-                        <tr>
-                            <th >Summary Item</th>
-                            <th>Total</th>
-                            <th>Failed</th>
-                        </tr>
+                    <div class="panel-body">
+                        {{!-- Meta info --}}
                         {{#with summary}}
-                        {{#with stats}}
-                        <tr>
-                            <td>Iterations</td>
-                            <td>{{iterations.total}}</td>
-                            <td>{{iterations.failed}}</td>
-                        </tr>
-                        <tr>
-                            <td>Requests</td>
-                            <td>{{requests.total}}</td>
-                            <td>{{requests.failed}}</td>
-                        </tr>
-                        <tr>
-                            <td>Prerequest Scripts</td>
-                            <td>{{prerequestScripts.total}}</td>
-                            <td>{{prerequestScripts.failed}}</td>
-                        </tr>
-                        <tr>
-                            <td>Test Scripts</td>
-                            <td>{{testScripts.total}}</td>
-                            <td>{{testScripts.failed}}</td>
-                        </tr>
-                        <tr>
-                            <td>Assertions</td>
-                            <td>{{assertions.total}}</td>
-                            <td>{{assertions.failed}}</td>
-                        </tr>
-                    </table>
-                    {{/with}}
+                        <table class="fixed grid">
+                            <tr>
+                                <td>Collection</td>
+                                <td>{{collection.name}}</td>
+                            </tr>
+                            {{#if collection.description}}
+                            <tr>
+                                <td>Description</td>
+                                <td>{{collection.description}}</td>
+                            </tr>
+                            {{/if}}
+                            {{/with}}
+                            <tr>
+                                <td>Time</td>
+                                <td>{{timestamp}}</td>
+                            </tr>
+                            <tr>
+                                <td>Exported with</td>
+                                <td>Newman v{{version}}</td>
+                            </tr>
+                        </table>
 
-                    <div class="col-md-12">&nbsp;</div>
-                    <table class="panel fixed grid">
-                        <tr>
-                            <td >Total run duration</td>
-                            <td>{{duration}}</td>
-                        </tr>
-                        <tr>
-                            <td>Total data received</td>
-                            <td>{{responseTotal}} (approx)</td>
-                        </tr>
-                        <tr>
-                            <td>Average response time</td>
-                            <td>{{responseAverage}}</td>
-                        </tr>
-                        <tr class="empty_row">
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Total Failures</td>
-                            <td>{{failures.length}}</td>
-                        </tr>
-                    </table>
+                        <div class="col-md-12">&nbsp;</div>
+                        {{!-- Statistics --}}
+                        <table class="panel fixed grid">
+                            <tr>
+                                <th >Summary Item</th>
+                                <th>Total</th>
+                                <th>Failed</th>
+                            </tr>
+                            {{#with summary}}
+                            {{#with stats}}
+                            <tr>
+                                <td>Iterations</td>
+                                <td>{{iterations.total}}</td>
+                                <td>{{iterations.failed}}</td>
+                            </tr>
+                            <tr>
+                                <td>Requests</td>
+                                <td>{{requests.total}}</td>
+                                <td>{{requests.failed}}</td>
+                            </tr>
+                            <tr>
+                                <td>Prerequest Scripts</td>
+                                <td>{{prerequestScripts.total}}</td>
+                                <td>{{prerequestScripts.failed}}</td>
+                            </tr>
+                            <tr>
+                                <td>Test Scripts</td>
+                                <td>{{testScripts.total}}</td>
+                                <td>{{testScripts.failed}}</td>
+                            </tr>
+                            <tr>
+                                <td>Assertions</td>
+                                <td>{{assertions.total}}</td>
+                                <td>{{assertions.failed}}</td>
+                            </tr>
+                        </table>
+                        {{/with}}
+
+                        <div class="col-md-12">&nbsp;</div>
+                        <table class="panel fixed grid">
+                            <tr>
+                                <td >Total run duration</td>
+                                <td>{{duration}}</td>
+                            </tr>
+                            <tr>
+                                <td>Total data received</td>
+                                <td>{{responseTotal}} (approx)</td>
+                            </tr>
+                            <tr>
+                                <td>Average response time</td>
+                                <td>{{responseAverage}}</td>
+                            </tr>
+                            <tr class="empty_row">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Total Failures</td>
+                                <td>{{failures.length}}</td>
+                            </tr>
+                        </table>
+                    </div>
                     {{/with}}
                 </div>
             </div>
