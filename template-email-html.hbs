@@ -20,22 +20,6 @@
             text-align: center;
         }
 
-        article,
-        aside,
-        details,
-        figcaption,
-        figure,
-        footer,
-        header,
-        hgroup,
-        main,
-        menu,
-        nav,
-        section,
-        summary {
-            display: block
-        }
-
         a {
             background-color: transparent
         }
@@ -95,10 +79,6 @@
             box-sizing: content-box
         }
 
-        pre {
-            overflow: auto
-        }
-
         code,
         kbd,
         pre,
@@ -112,10 +92,6 @@
             margin: 0 2px;
             border: 1px solid silver;
             min-width: 0;
-        }
-
-        textarea {
-            overflow: auto
         }
 
         optgroup {
@@ -219,20 +195,6 @@
 
         .img-rounded {
             border-radius: 6px
-        }
-
-        .img-thumbnail {
-            display: inline-block;
-            max-width: 100%;
-            height: auto;
-            padding: 4px;
-            line-height: 1.42857143;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            -webkit-transition: all .2s ease-in-out;
-            -o-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out
         }
 
         .img-circle {
@@ -578,20 +540,6 @@
             box-shadow: none
         }
 
-        pre {
-            display: block;
-            padding: 9.5px;
-            margin: 0 0 10px;
-            font-size: 13px;
-            line-height: 1.42857143;
-            color: #333;
-            word-break: break-all;
-            word-wrap: break-word;
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            border-radius: 4px
-        }
-
         pre code {
             padding: 0;
             font-size: inherit;
@@ -709,42 +657,11 @@
             width: 8.33333333%
         }
 
-        table {
-            background-color: transparent
-        }
-
         caption {
             padding-top: 8px;
             padding-bottom: 8px;
             color: #777;
             text-align: left
-        }
-
-        legend {
-            display: block;
-            width: 100%;
-            padding: 0;
-            margin-bottom: 20px;
-            font-size: 21px;
-            line-height: inherit;
-            color: #333;
-            border: 0;
-            border-bottom: 1px solid #e5e5e5
-        }
-
-        label {
-            display: inline-block;
-            max-width: 100%;
-            margin-bottom: 5px;
-            font-weight: 700
-        }
-
-        output {
-            display: block;
-            padding-top: 7px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555
         }
 
         .fade {
@@ -789,24 +706,6 @@
             -webkit-transition-property: height, visibility;
             -o-transition-property: height, visibility;
             transition-property: height, visibility
-        }
-
-        .caret {
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 2px;
-            vertical-align: middle;
-            border-top: 4px solid;
-            border-right: 4px solid transparent;
-            border-left: 4px solid transparent
-        }
-
-        .pagination {
-            display: inline-block;
-            padding-left: 0;
-            margin: 20px 0;
-            border-radius: 4px
         }
 
         .pager {
@@ -873,21 +772,6 @@
             background-color: #d9534f
         }
 
-        .badge {
-            display: inline-block;
-            min-width: 10px;
-            padding: 3px 7px;
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            background-color: #777;
-            border-radius: 10px
-        }
-
         .badge:empty {
             display: none
         }
@@ -924,19 +808,6 @@
 
         .jumbotron .container {
             max-width: 100%
-        }
-
-        .thumbnail {
-            display: block;
-            padding: 4px;
-            margin-bottom: 20px;
-            line-height: 1.42857143;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            -webkit-transition: border .2s ease-in-out;
-            -o-transition: border .2s ease-in-out;
-            transition: border .2s ease-in-out
         }
 
         a.thumbnail:hover,
@@ -1046,10 +917,6 @@
             display: none !important
         }
 
-        .show {
-            display: block !important
-        }
-
         .invisible {
             visibility: hidden
         }
@@ -1113,92 +980,96 @@
     <div class="container">
         <h3>Newman Report</h3>
         <div class="panel-group">
-            {{!-- Meta info --}}
-            {{#with summary}}
-            <table class="panel panel-default fixed grid">
-                <tr>
-                    <td>Collection</td>
-                    <td>{{collection.name}}</td>
-                </tr>
-                {{#if collection.description}}
-                <tr>
-                    <td>Description</td>
-                    <td>{{collection.description}}</td>
-                </tr>
-                {{/if}}
-                {{/with}}
-                <tr>
-                    <td>Time</td>
-                    <td>{{timestamp}}</td>
-                </tr>
-                <tr>
-                    <td>Exported with</td>
-                    <td>Newman v{{version}}</td>
-                </tr>
-            </table>
+            <div class="panel-primary">
+                <div class="panel panel-default">
+                    {{!-- Meta info --}}
+                    {{#with summary}}
+                    <table class="fixed grid">
+                        <tr>
+                            <td>Collection</td>
+                            <td>{{collection.name}}</td>
+                        </tr>
+                        {{#if collection.description}}
+                        <tr>
+                            <td>Description</td>
+                            <td>{{collection.description}}</td>
+                        </tr>
+                        {{/if}}
+                        {{/with}}
+                        <tr>
+                            <td>Time</td>
+                            <td>{{timestamp}}</td>
+                        </tr>
+                        <tr>
+                            <td>Exported with</td>
+                            <td>Newman v{{version}}</td>
+                        </tr>
+                    </table>
 
-            <div class="col-md-12">&nbsp;</div>
-            {{!-- Statistics --}}
-            <table class="fixed grid">
-                <tr>
-                    <th >Summary Item</th>
-                    <th>Total</th>
-                    <th>Failed</th>
-                </tr>
-                {{#with summary}}
-                {{#with stats}}
-                <tr>
-                    <td>Iterations</td>
-                    <td>{{iterations.total}}</td>
-                    <td>{{iterations.failed}}</td>
-                </tr>
-                <tr>
-                    <td>Requests</td>
-                    <td>{{requests.total}}</td>
-                    <td>{{requests.failed}}</td>
-                </tr>
-                <tr>
-                    <td>Prerequest Scripts</td>
-                    <td>{{prerequestScripts.total}}</td>
-                    <td>{{prerequestScripts.failed}}</td>
-                </tr>
-                <tr>
-                    <td>Test Scripts</td>
-                    <td>{{testScripts.total}}</td>
-                    <td>{{testScripts.failed}}</td>
-                </tr>
-                <tr>
-                    <td>Assertions</td>
-                    <td>{{assertions.total}}</td>
-                    <td>{{assertions.failed}}</td>
-                </tr>
-            </table>
-            {{/with}}
+                    <div class="col-md-12">&nbsp;</div>
+                    {{!-- Statistics --}}
+                    <table class="panel fixed grid">
+                        <tr>
+                            <th >Summary Item</th>
+                            <th>Total</th>
+                            <th>Failed</th>
+                        </tr>
+                        {{#with summary}}
+                        {{#with stats}}
+                        <tr>
+                            <td>Iterations</td>
+                            <td>{{iterations.total}}</td>
+                            <td>{{iterations.failed}}</td>
+                        </tr>
+                        <tr>
+                            <td>Requests</td>
+                            <td>{{requests.total}}</td>
+                            <td>{{requests.failed}}</td>
+                        </tr>
+                        <tr>
+                            <td>Prerequest Scripts</td>
+                            <td>{{prerequestScripts.total}}</td>
+                            <td>{{prerequestScripts.failed}}</td>
+                        </tr>
+                        <tr>
+                            <td>Test Scripts</td>
+                            <td>{{testScripts.total}}</td>
+                            <td>{{testScripts.failed}}</td>
+                        </tr>
+                        <tr>
+                            <td>Assertions</td>
+                            <td>{{assertions.total}}</td>
+                            <td>{{assertions.failed}}</td>
+                        </tr>
+                    </table>
+                    {{/with}}
 
-            <div class="col-md-12">&nbsp;</div>
-            <table class="fixed grid">
-                <tr>
-                    <td >Total run duration</td>
-                    <td>{{duration}}</td>
-                </tr>
-                <tr>
-                    <td>Total data received</td>
-                    <td>{{responseTotal}} (approx)</td>
-                </tr>
-                <tr>
-                    <td>Average response time</td>
-                    <td>{{responseAverage}}</td>
-                </tr>
-                <tr class="empty_row">
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Total Failures</td>
-                    <td>{{failures.length}}</td>
-                </tr>
-            </table>
-            {{/with}}
+                    <div class="col-md-12">&nbsp;</div>
+                    <table class="panel fixed grid">
+                        <tr>
+                            <td >Total run duration</td>
+                            <td>{{duration}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total data received</td>
+                            <td>{{responseTotal}} (approx)</td>
+                        </tr>
+                        <tr>
+                            <td>Average response time</td>
+                            <td>{{responseAverage}}</td>
+                        </tr>
+                        <tr class="empty_row">
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Total Failures</td>
+                            <td>{{failures.length}}</td>
+                        </tr>
+                    </table>
+                    {{/with}}
+                </div>
+            </div>
         </div>
 
         <br />
