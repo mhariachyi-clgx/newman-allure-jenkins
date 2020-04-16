@@ -24,12 +24,10 @@
             background-color: transparent
         }
 
-        a:active,
-        a:hover {
-            outline: 0
+        b {
+            font-weight: 700
         }
 
-        b,
         strong {
             font-weight: 700
         }
@@ -48,7 +46,13 @@
             background: #ff0
         }
 
-        sub,
+        sub {
+            position: relative;
+            font-size: 75%;
+            line-height: 0;
+            vertical-align: baseline
+        }
+
         sup {
             position: relative;
             font-size: 75%;
@@ -102,7 +106,6 @@
             border: 1px;
             border-style: solid;
             border-color: #ddd;
-            border-radius: 4px;
             border-spacing: 0;
             border-collapse: collapse;
             margin: 0;
@@ -110,12 +113,19 @@
             text-align: center;
         }
         
-        td,
+        td {
+            border: 1px;
+            border-style: solid;
+            border-color: #ddd;
+            padding-right: 0;
+            vertical-align: top;
+            text-align: center;
+        }
+
         th {
             border: 1px;
             border-style: solid;
             border-color: #ddd;
-            border-radius: 4px;
             padding-right: 0;
             vertical-align: top;
             text-align: center;
@@ -140,19 +150,9 @@
         .w_033 {
             width: 33.33333333%;
         }
-        
-        .auto {
-            table-layout: auto;
-        }
-        
-        .fixed {
-            table-layout: fixed;
-        }
 
-        @font-face {
-            font-family: 'Glyphicons Halflings';
-            src: url(../fonts/glyphicons-halflings-regular.eot);
-            src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../fonts/glyphicons-halflings-regular.woff) format('woff'), url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+        .w_05 {
+            width: 50%;
         }
 
         html {
@@ -173,32 +173,12 @@
             text-decoration: none
         }
 
-        a:hover,
-        a:focus {
-            color: #23527c;
-            text-decoration: underline
-        }
-
-        a:focus {
-            outline: thin dotted;
-            outline: 5px auto -webkit-focus-ring-color;
-            outline-offset: -2px
-        }
-
         figure {
             margin: 0
         }
 
         img {
             vertical-align: middle
-        }
-
-        .img-rounded {
-            border-radius: 6px
-        }
-
-        .img-circle {
-            border-radius: 50%
         }
 
         hr {
@@ -217,16 +197,6 @@
             overflow: hidden;
             clip: rect(0, 0, 0, 0);
             border: 0
-        }
-
-        .sr-only-focusable:active,
-        .sr-only-focusable:focus {
-            position: static;
-            width: auto;
-            height: auto;
-            margin: 0;
-            overflow: visible;
-            clip: auto
         }
 
         h1,
@@ -355,40 +325,20 @@
             color: #337ab7
         }
 
-        a.text-primary:hover {
-            color: #286090
-        }
-
         .text-success {
             color: #3c763d
-        }
-
-        a.text-success:hover {
-            color: #2b542c
         }
 
         .text-info {
             color: #31708f
         }
 
-        a.text-info:hover {
-            color: #245269
-        }
-
         .text-warning {
             color: #8a6d3b
         }
 
-        a.text-warning:hover {
-            color: #66512c
-        }
-
         .text-danger {
             color: #a94442
-        }
-
-        a.text-danger:hover {
-            color: #843534
         }
 
         .bg-primary {
@@ -396,40 +346,20 @@
             background-color: #337ab7
         }
 
-        a.bg-primary:hover {
-            background-color: #286090
-        }
-
         .bg-success {
             background-color: #dff0d8
-        }
-
-        a.bg-success:hover {
-            background-color: #c1e2b3
         }
 
         .bg-info {
             background-color: #d9edf7
         }
 
-        a.bg-info:hover {
-            background-color: #afd9ee
-        }
-
         .bg-warning {
             background-color: #fcf8e3
         }
 
-        a.bg-warning:hover {
-            background-color: #f7ecb5
-        }
-
         .bg-danger {
             background-color: #f2dede
-        }
-
-        a.bg-danger:hover {
-            background-color: #e4b9b9
         }
 
         .page-header {
@@ -480,22 +410,6 @@
             margin-left: 0
         }
 
-        @media (min-width:768px) {
-            .dl-horizontal dt {
-                float: left;
-                width: 160px;
-                overflow: hidden;
-                clear: left;
-                text-align: right;
-                text-overflow: ellipsis;
-                white-space: nowrap
-            }
-
-            .dl-horizontal dd {
-                margin-left: 180px
-            }
-        }
-
         .initialism {
             font-size: 90%;
             text-transform: uppercase
@@ -519,7 +433,6 @@
             font-size: 90%;
             color: #c7254e;
             background-color: #f9f2f4;
-            border-radius: 4px
         }
 
         kbd {
@@ -527,7 +440,6 @@
             font-size: 90%;
             color: #fff;
             background-color: #333;
-            border-radius: 3px;
             -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
             box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25)
         }
@@ -546,7 +458,6 @@
             color: inherit;
             white-space: pre-wrap;
             background-color: transparent;
-            border-radius: 0
         }
 
         .pre-scrollable {
@@ -559,24 +470,6 @@
             padding-left: 15px;
             margin-right: auto;
             margin-left: auto
-        }
-
-        @media (min-width:768px) {
-            .container {
-                width: 750px
-            }
-        }
-
-        @media (min-width:992px) {
-            .container {
-                width: 970px
-            }
-        }
-
-        @media (min-width:1200px) {
-            .container {
-                width: 1170px
-            }
         }
 
         .container-fluid {
@@ -729,18 +622,6 @@
             text-align: center;
             white-space: nowrap;
             vertical-align: baseline;
-            border-radius: .25em
-        }
-
-        a.label:hover,
-        a.label:focus {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer
-        }
-
-        .label:empty {
-            display: none
         }
 
         .btn .label {
@@ -772,46 +653,6 @@
             background-color: #d9534f
         }
 
-        .badge:empty {
-            display: none
-        }
-
-        a.badge:hover,
-        a.badge:focus {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer
-        }
-
-        .jumbotron {
-            padding: 30px 15px;
-            margin-bottom: 30px;
-            color: inherit;
-            background-color: #eee
-        }
-
-        .jumbotron h1,
-        .jumbotron .h1 {
-            color: inherit
-        }
-
-        .jumbotron p {
-            margin-bottom: 15px;
-            font-size: 21px;
-            font-weight: 200
-        }
-
-        .container .jumbotron,
-        .container-fluid .jumbotron {
-            border-radius: 6px
-        }
-
-        .jumbotron .container {
-            max-width: 100%
-        }
-
-        a.thumbnail:hover,
-        a.thumbnail:focus,
         a.thumbnail.active {
             border-color: #337ab7
         }
@@ -825,7 +666,6 @@
             margin-bottom: 20px;
             background-color: #fff;
             border: 1px solid transparent;
-            border-radius: 4px;
             -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
             box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
         }
@@ -856,25 +696,12 @@
             border-bottom-left-radius: 3px
         }
 
-        .panel-heading+.list-group .list-group-item:first-child {
-            border-top-width: 0
-        }
-
-        .list-group+.panel-footer {
-            border-top-width: 0
-        }
-
         .panel-group {
             margin-bottom: 20px
         }
 
         .panel-group .panel {
             margin-bottom: 0;
-            border-radius: 4px
-        }
-
-        .panel-group .panel+.panel {
-            margin-top: 5px
         }
 
         .panel-group .panel-heading {
@@ -883,10 +710,6 @@
 
         .panel-group .panel-footer {
             border-top: 0
-        }
-
-        .panel-group .panel-footer+.panel-collapse .panel-body {
-            border-bottom: 1px solid #ddd
         }
 
         .panel-default {
@@ -985,9 +808,9 @@
                     <div class="panel-body">
                         {{!-- Meta info --}}
                         {{#with summary}}
-                        <table class="fixed grid">
+                        <table>
                             <tr>
-                                <td>Collection</td>
+                                <td class="w_05">Collection</td>
                                 <td>{{collection.name}}</td>
                             </tr>
                             {{#if collection.description}}
@@ -1009,9 +832,9 @@
 
                         <div class="col-md-12">&nbsp;</div>
                         {{!-- Statistics --}}
-                        <table class="panel fixed grid">
+                        <table class="panel">
                             <tr>
-                                <th >Summary Item</th>
+                                <th class="w_033">Summary Item</th>
                                 <th>Total</th>
                                 <th>Failed</th>
                             </tr>
@@ -1046,9 +869,9 @@
                         {{/with}}
 
                         <div class="col-md-12">&nbsp;</div>
-                        <table class="panel fixed grid">
+                        <table class="panel">
                             <tr>
-                                <td >Total run duration</td>
+                                <td class="w_05">Total run duration</td>
                                 <td>{{duration}}</td>
                             </tr>
                             <tr>
@@ -1116,10 +939,10 @@
                     aria-labelledby="failureHead-{{@index}}">
                     <div class="panel-body">
                         <div class="col-md-12">&nbsp;</div>
-                        <table class="grid fixed">
+                        <table>
                             {{#if error.test}}
                             <tr>
-                                <td>Description</td>
+                                <td class="w_05">Description</td>
                                 <td>{{error.message}}</td>
                             </tr>
                             {{/if}}
@@ -1164,7 +987,7 @@
         <div id="requestData-{{item.id}}" class="panel-collapse collapse in" role="tabpanel"
             aria-labelledby="requestHead-{{item.id}}">
             <div class="panel-body">
-                <table class="grid">
+                <table>
                     {{#with request}}
                     {{#if description.content}}
                     <tr>
@@ -1178,7 +1001,7 @@
                     {{/if}}
 
                     <tr>
-                        <td>Method</td>
+                        <td class="w_033">Method</td>
                         <td>{{method}}</td>
                     </tr>
                     <tr>
@@ -1255,10 +1078,10 @@
                     <tr>
                         <td>Tests</td>
                         <td class="fit">
-                            <table class="table-condensed grid">
+                            <table class="table-condensed">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th class="w_066">Name</th>
                                         <th>Pass count</th>
                                         <th>Fail count</th>
                                     </tr>
