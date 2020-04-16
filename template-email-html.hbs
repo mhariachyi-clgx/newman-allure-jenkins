@@ -801,16 +801,16 @@
 
 <body>
     <div class="container">
-        <h3>Newman Report</h3>
+        {{#with summary}}
+        <h1>{{collection.name}} on {{environment.name}} Test Report</h1>
         <div class="panel-group">
             <div class="panel-primary">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {{!-- Meta info --}}
-                        {{#with summary}}
                         <table>
                             <tr>
-                                <td class="w_05">Collection</td>
+                                <td class="w_033">Collection</td>
                                 <td>{{collection.name}}</td>
                             </tr>
                             {{#if collection.description}}
@@ -871,7 +871,7 @@
                         <div class="col-md-12">&nbsp;</div>
                         <table class="panel">
                             <tr>
-                                <td class="w_05">Total run duration</td>
+                                <td class="w_033">Total run duration</td>
                                 <td>{{duration}}</td>
                             </tr>
                             <tr>
@@ -898,7 +898,7 @@
         </div>
 
         <br />
-        <h4>Requests</h4>
+        <h2>Requests</h2>
 
         {{#each aggregations}}
         {{#if parent.name}}
@@ -915,13 +915,14 @@
             </div>
         </div>
         {{else}}
+        <h4>Root Folder Requests</h4>
         {{> aggregations}}
         {{/if}}
         {{/each}}
 
         {{#if summary.failures.length}}
         <br />
-        <h4>Failures</h4>
+        <h2>Failures</h2>
 
         {{#each summary.failures}}
         <div class="panel-group" id="collapse-failure-{{@index}}" role="tablist" aria-multiselectable="true">
@@ -942,7 +943,7 @@
                         <table>
                             {{#if error.test}}
                             <tr>
-                                <td class="w_05">Description</td>
+                                <td class="w_033">Description</td>
                                 <td>{{error.message}}</td>
                             </tr>
                             {{/if}}
