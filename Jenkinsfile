@@ -2,6 +2,9 @@ pipeline{
     agent{
         label "corelogicpostman"
     }
+    triggers { 
+        cron('H 13 * * *') 
+    }
     environment {
     		PARAMS_Application = "DemoApp/DemoSuite"
             ENVIRONMENT_NAME = "demo_env"
