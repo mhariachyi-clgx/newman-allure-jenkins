@@ -3,7 +3,7 @@ pipeline{
         label "corelogicpostman"
     }
     triggers { 
-        cron('H 13 * * *') 
+        cron('TZ=Europe/London H 13 * * *') 
     }
     environment {
     		PARAMS_Application = "DemoApp/DemoSuite"
