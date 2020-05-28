@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0e6f7b50-1b56-4dec-a1bc-5fe6c7f656fc",
+		"_postman_id": "821ecf6e-5303-4ceb-9118-ce01948bfcff",
 		"name": "DemoSuite",
 		"description": "demo suite collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -15,17 +15,19 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6d67d8af-8cf9-4c6e-b360-f29b9af28dfc",
+								"id": "08ff673f-657b-4445-ba83-036a0abad186",
 								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
 									"pm.test(\"[TC-001] Employees request is successful\", function () {",
 									"    pm.response.to.have.status(200);",
-									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.status).to.eql(\"success\");",
 									"});",
 									"pm.test(\"[TC-001] The response data list contains 24 records\", function () {",
-									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.data).to.have.lengthOf(24);",
-									"});"
+									"});",
+									"",
+									"console.log(\"!!! jsonData.status = \" + jsonData.status)"
 								],
 								"type": "text/javascript"
 							}
@@ -54,7 +56,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8038435b-b4cd-4d66-b33d-e3abbb7b890e",
+								"id": "5cc7459b-57c1-4a36-b62a-678743ec2c7a",
 								"exec": [
 									"pm.test(\"[TC-002] Employee request is successful\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -99,7 +101,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a0628820-0e7f-4918-8f91-7f1538f5ac4f",
+						"id": "c2c3340b-8e16-4e03-869f-7a76eab33b9c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -109,7 +111,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0cd01d05-c9da-4017-9668-4703a8b35050",
+						"id": "22ef1404-9f30-4e38-bf64-c86333d18b9c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -125,7 +127,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cd5824aa-4494-4fc1-8be5-323fc249a401",
+						"id": "e54899b5-df7b-479e-bb4c-b4110a1c90be",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -175,7 +177,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "cf1f6005-6df9-4ced-8c33-f8ca1397ffd2",
+				"id": "4296fac6-88b3-4071-b205-c2a87b14d63a",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -185,7 +187,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "d829b1a0-fa35-4a36-8efe-f741ea3cf0f0",
+				"id": "833fd396-1a1e-437c-a599-8ca2cf2244f8",
 				"type": "text/javascript",
 				"exec": [
 					"pm.test(\"[TC-000] The response is 200 OK\", function () {",
